@@ -1,11 +1,34 @@
 import React from 'react'
 import Title from '../components/Title'
-import { assets, userBookingsDummyData } from '../assets/assets'
+import { assets } from '../assets/assets'
 import { useState } from 'react'
+import { useAppContext } from '../context/AppContext'
+import toast from 'react-hot-toast'
+import { useEffect } from 'react'
 
 const MyBookings = () => {
 
-    const [bookings, setBookings] = useState(userBookingsDummyData)
+    const [bookings, setBookings] = useState([])
+    const { axios, getToken, user, formatPrice } = useAppContext()
+
+    const fetchUserBookings = async () => {
+        try {
+            const {data} = await axios.get('/api/bookings/user', { headers: { Authorization: `Bearer ${await getToken()}` } });
+            if (data.success) {
+                setBookings(data.bookings);
+            } else {
+                toast.error(data.message );
+            }
+        } catch (error) {
+            toast.error(error.message );
+        }
+    }
+
+    useEffect(() => {
+        if (user) {
+            fetchUserBookings();
+        }
+    },[user])
 
     return (
         <div className='py-28 md:pb-35 md:pt-32 px-4 md:px-16 lg:px-24 xl:px-32'>
@@ -35,7 +58,7 @@ const MyBookings = () => {
                                     <img src={assets.guestsIcon} alt="guests-icon" />
                                     <span>Số lượng: {booking.guests}</span>
                                 </div>
-                                <p className='text-base'>Tổng: {booking.totalPrice}.000 VND</p>
+                                <p className='text-base'>Tổng: {formatPrice(booking.totalPrice)}</p>
                             </div>
                         </div>
                         {/*ngày và tg */}
@@ -64,7 +87,7 @@ const MyBookings = () => {
                             </div>
                             {!booking.isPaid && (
                                 <button className='px-4 py-1.5 mt-4 text-xs bg-[var(--color-1)] text-white rounded-full hover:bg-[var(--color-2)]/50 transition-all hover:text-gray-700 cursor-pointer'>
-                                    thanh toán
+                                    Thanh toán
                                 </button>
                             )}
                         </div>

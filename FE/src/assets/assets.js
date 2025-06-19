@@ -79,6 +79,11 @@ export const cities = [
     "Singapore",
     "New York",
     "London",
+    "Hà Nội",
+    "Hồ Chí Minh",
+    "Đà Nẵng",
+    "Nha Trang",
+    "Vũng Tàu"
 ];
 
 // Exclusive Offers Dummy Data

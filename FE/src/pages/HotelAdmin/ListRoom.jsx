@@ -1,11 +1,44 @@
 import React from 'react'
 import { useState } from 'react'
-import { roomsDummyData } from '../../assets/assets'
 import Title from '../../components/Title'
+import { useAppContext } from '../../context/AppContext.jsx'
+import toast from 'react-hot-toast'
+import { useEffect } from 'react'
 
 const ListRoom = () => {
+  const [rooms, setRooms] = useState([])
+  const { axios, getToken, user, currency, formatPrice } = useAppContext()
 
-  const [rooms, setRooms] = useState(roomsDummyData)
+  //fetch room từ owner
+  const fetchRooms = async () => {
+    try {
+      const { data } = await axios.get('/api/rooms/owner', { headers: { Authorization: `Bearer ${await getToken()}` } });
+      if (data.success) {
+        setRooms(data.rooms);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message || "Đã xảy ra lỗi khi lấy danh sách phòng");
+    }
+  }
+
+  //trạng thái của phòng
+  const toggleAvailability = async (roomId) => {
+    const { data } = await axios.post('/api/rooms/toggle-availability', { roomId }, { headers: { Authorization: `Bearer ${await getToken()}` } });
+    if (data.success) {
+      toast.success(data.message);
+      fetchRooms(); // Cập nhật lại danh sách phòng sau khi thay đổi trạng thái
+    } else {
+      toast.error(data.message);
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      fetchRooms();
+    }
+  }, [user])
   return (
     <div>
       <Title align='left' font='Roboto' title='Danh sách các phòng' subTitle='Ai cho tôi lương thiện' />
@@ -29,13 +62,12 @@ const ListRoom = () => {
                 </td>
                 <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-sm:hidden'>
                   {item.amenities.join(', ')}
-                </td>
-                <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>
-                  {item.pricePerNight}.000 VND
+                </td>                <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>
+                  {formatPrice(item.pricePerNight)}
                 </td>
                 <td className='py-3 px-4 text-red-500 text-sm border-t border-gray-300 text-center'>
-                  <label htmlFor="" className='relative inline-flex items-center cursor-pointer text-gray-900 gap-3'>
-                    <input type="checkbox" className='sr-only peer' checked={item.isAvailable}/>
+                  <label className='relative inline-flex items-center cursor-pointer text-gray-900 gap-3'>
+                    <input onChange={() => toggleAvailability(item._id)} type="checkbox" className='sr-only peer' checked={item.isAvailable} />
                     <div className='w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-[var(--color-1)] transition-colors duration-200'>
 
                     </div>
