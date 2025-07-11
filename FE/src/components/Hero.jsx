@@ -19,7 +19,7 @@ const Hero = () => {
         
         try {
             //gọi api để lưu thành phố đã tìm kiếm
-            await axios.post('/api/user/store-recent-search',
+            await axios.post('/api/user/recent-search-cities',
                 {recentSearchedCity: destination}, 
                 { headers: { Authorization: `Bearer ${await getToken()}` } }
             );

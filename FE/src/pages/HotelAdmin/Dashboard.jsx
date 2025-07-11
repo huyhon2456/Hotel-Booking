@@ -14,13 +14,25 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const { data } = await axios.get('/api/bookings/hotel', { headers: { Authorization: `Bearer ${await getToken()}` } });
+      console.log('Fetching dashboard data...');
+      const token = await getToken();
+      console.log('Got token:', token ? 'Token received' : 'No token');
+      
+      const { data } = await axios.get('/api/bookings/hotel', { 
+        headers: { Authorization: `Bearer ${token}` } 
+      });
+      
+      console.log('Dashboard API response:', data);
+      
       if (data.success) {
         setDashboardData(data.dashboardData);
+        console.log('Dashboard data set:', data.dashboardData);
       } else {
+        console.error('API error:', data.message);
         toast.error(data.message || "Không thể lấy dữ liệu dashboard");
       }
     } catch (error) {
+      console.error('Fetch error:', error);
       toast.error(error.message || "Đã xảy ra lỗi khi lấy dữ liệu dashboard");
     }
   }
@@ -61,16 +73,15 @@ const Dashboard = () => {
               <th className='py-3 px-4 text-gray-800 font-medium'>Tên khách</th>
               <th className='py-3 px-4 text-gray-800 font-medium max-sm:hidden'>Tên phòng</th>
               <th className='py-3 px-4 text-gray-800 font-medium text-center'>Tổng tiền</th>
-              <th className='py-3 px-4 text-gray-800 font-medium
-              text-center'>Trạng thái</th>
+              <th className='py-3 px-4 text-gray-800 font-medium text-center'>Trạng thái</th>
             </tr>
           </thead>
 
           <tbody className='text-sm'>
             {dashboardData.bookings.map((item, index) => (
               <tr key={index}>
-                <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>{item.user.username}</td>                <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-sm:hidden'>{item.room.roomType}</td>
-
+                <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>{item.user.username}</td>
+                <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-sm:hidden'>{item.room.roomType}</td>
                 <td className='py-3 px-4 text-gray-700 border-t border-gray-300 text-center'>{formatPrice(item.totalPrice)}</td>
 
                 <td className='py-3 px-4 border-t border-gray-300 flex '>

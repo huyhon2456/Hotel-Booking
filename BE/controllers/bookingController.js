@@ -98,18 +98,49 @@ export const getUserBookings = async (req, res) => {
 
 export const getHotelBookings = async (req, res) => {
    try {
-     const hotel = await Hotel.findOne({ owner: req.auth.userId });
-    if (!hotel) {
-        return res.json({ success: false, message: "Hotel not found" });
-    }
-    const bookings = await Booking.find({ hotel: hotel._id }).populate('room hotel user').sort({ createdAt: -1 });
-    //tống lượt booking
-    const totalBookings = bookings.length;
-    //tổng tiền
-    const totalRevenue = bookings.reduce((acc, booking) => acc + booking.totalPrice, 0);
-    res.json({ success: true, dashboardData: { totalBookings, totalRevenue, bookings } });
+     console.log('getHotelBookings called with user:', req.user ? req.user._id : 'No user');
+     
+     // Sử dụng req.user._id thay vì req.auth.userId
+     const hotel = await Hotel.findOne({ owner: req.user._id });
+     
+     console.log('Found hotel:', hotel ? hotel._id : 'No hotel found');
+     
+     if (!hotel) {
+        return res.json({ 
+            success: false, 
+            message: "Không tìm thấy khách sạn cho tài khoản này"
+        });
+     }
+     
+     // Tìm tất cả booking cho khách sạn này
+     const bookings = await Booking.find({ hotel: hotel._id })
+        .populate('room hotel user')
+        .sort({ createdAt: -1 });
+        
+     console.log('Found bookings:', bookings.length);
+     
+     // Tổng lượt booking
+     const totalBookings = bookings.length;
+     
+     // Tổng tiền
+     const totalRevenue = bookings.reduce((acc, booking) => acc + booking.totalPrice, 0);
+     
+     console.log('Dashboard data:', { totalBookings, totalRevenue, bookingCount: bookings.length });
+     
+     res.json({ 
+        success: true, 
+        dashboardData: { 
+            totalBookings, 
+            totalRevenue, 
+            bookings 
+        } 
+     });
    } catch (error) {
-       res.json({ success: false, message: error.message });
+       console.error('Error in getHotelBookings:', error);
+       res.json({ 
+           success: false, 
+           message: "Lỗi khi lấy dữ liệu booking: " + error.message 
+       });
    }
 };
 
