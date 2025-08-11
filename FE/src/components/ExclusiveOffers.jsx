@@ -6,7 +6,7 @@ const ExclusiveOffers = () => {
     return (
         <div className='flex flex-col items-center px-6 md:px-16 lg:px-24 xl:px-32 pt-20 pb-30'>
             <div className='flex flex-col items-center md:flex-row justify-between w-full'>
-                <Title align='left' title='Ưu đãi độc quyền' subTitle='nhận các ưu đãi cực khủng để có những khoản thời gian vui vẻ bên gai đình và bạn bè' />
+                <Title align='left' title='Ưu đãi độc quyền' subTitle='nhận các ưu đãi cực khủng để có những khoản thời gian vui vẻ bên gia đình và bạn bè' />
                 <button className='group flex items-center gap-2 font-medium cursor-pointer max-md:mt-12'>
                     Xem tất cả ưu đãi
                     <img src={assets.arrowIcon} alt="arrow-icon" className='group-hover:translate-x-1 transition-all' />

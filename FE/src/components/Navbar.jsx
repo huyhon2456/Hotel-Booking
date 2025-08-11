@@ -5,17 +5,19 @@ import { useClerk, UserButton } from '@clerk/clerk-react';
 import { useAppContext } from '../context/AppContext.jsx';
 
 const BookIcon = () => (
-  <svg className="w-4 h-4 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" >
-    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M9 3v14m7 0v4" />
-  </svg>
+  <img
+    src={assets.logo}
+    alt="Đặt phòng của tôi"
+    className="w-4 h-4 object-contain opacity-80 "
+  />
 )
 
 const Navbar = () => {
   const navLinks = [
     { name: 'Trang chủ', path: '/' },
     { name: 'Khách sạn', path: '/rooms' },
-    { name: 'Blog', path: '/' },
-    { name: 'Liên hệ', path: '/' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'Liên hệ', path: '/contact' },
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,6 +25,10 @@ const Navbar = () => {
   const { openSignIn } = useClerk()
   const location = useLocation()
   const { user, navigate, isOwner, setShowHotelReg } = useAppContext()
+  const isActivePath = (path) => {
+    if (path === '/') return location.pathname === '/'
+    return location.pathname === path || location.pathname.startsWith(path + '/')
+  }
 
   useEffect(() => {
 
@@ -46,29 +52,35 @@ const Navbar = () => {
 
       {/* Logo */}
       <Link to='/'>
-        <img src={assets.logo} alt="logo" className={`h-9 ${isScrolled && "invert opacity-80"}`} />
+        <img src={assets.logo} alt="logo" className={`h-12 ${!isScrolled ? "invert" : ""} ${isScrolled && "opacity-80"}`} />
       </Link>
 
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center gap-4 lg:gap-8">
-        {navLinks.map((link, i) => (
-          <a key={i} href={link.path} className={`group flex flex-col gap-0.5 ${isScrolled ? "text-gray-700" : "text-white"}`}>
-            {link.name}
-            <div className={`${isScrolled ? "bg-gray-700" : "bg-white"} h-0.5 w-0 group-hover:w-full transition-all duration-300`} />
-          </a>
-        ))}
+        {navLinks.map((link, i) => {
+          const active = isActivePath(link.path)
+          return (
+            <Link
+              key={i}
+              to={link.path}
+              className={`group flex flex-col gap-0.5 ${isScrolled ? "text-black opacity-80" : "text-white"} ${active ? 'font-medium' : ''}`}
+            >
+              {link.name}
+              <div className={`${isScrolled ? "bg-black opacity-80" : "bg-white"} h-0.5 ${active ? 'w-full' : 'w-0'} group-hover:w-full transition-all duration-300`} />
+            </Link>
+          )
+        })}
 
         {user && (
           <button className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`} onClick={() => isOwner ? navigate('/owner') : setShowHotelReg(true)}>
-            {isOwner ? 'Dashboard' : 'List Your Hotel'}
+            {isOwner ? 'Bảng điều khiển' : 'Đăng ký khách sạn'}
           </button>
-        )
-        }
+        )}
       </div>
 
       {/* Desktop Right */}
       <div className="hidden md:flex items-center gap-4">
-        <img src={assets.searchIcon} alt="search" className={`${isScrolled && 'invert'}h-7 transition-all duration-500`} />
+       
 
         {user ?
           (<UserButton>
@@ -78,7 +90,7 @@ const Navbar = () => {
           </UserButton>)
           :
           (<button onClick={openSignIn} className="bg-[var(--color-1)] text-white px-8 py-2.5 rounded-full ml-4 transition-all duration-500">
-            Login
+            Đăng nhập
           </button>)
         }
 
@@ -89,7 +101,7 @@ const Navbar = () => {
       <div className="flex items-center gap-3 md:hidden">
         {user && <UserButton>
           <UserButton.MenuItems>
-            <UserButton.Action label="My Bookings" labelIcon={<BookIcon />} onClick={() => navigate('/my-bookings')} />
+            <UserButton.Action label="Đặt phòng của tôi" labelIcon={<BookIcon />} onClick={() => navigate('/my-bookings')} />
           </UserButton.MenuItems>
         </UserButton>}
         <img onClick={() => setIsMenuOpen(!isMenuOpen)} src={assets.menuIcon} alt="" className={`${isScrolled && "invert"} h-4`} />
@@ -102,17 +114,17 @@ const Navbar = () => {
         </button>
 
         {navLinks.map((link, i) => (
-          <a key={i} href={link.path} onClick={() => setIsMenuOpen(false)}>
+          <Link key={i} to={link.path} onClick={() => setIsMenuOpen(false)}>
             {link.name}
-          </a>
+          </Link>
         ))}
 
-        {user && <button onClick={() => isOwner ? navigate('/owner') : setShowHotelReg(true)} className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-           {isOwner ? 'Dashboard' : 'List Your Hotel'}
+      {user && <button onClick={() => isOwner ? navigate('/owner') : setShowHotelReg(true)} className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
+        {isOwner ? 'Bảng điều khiển' : 'Đăng ký khách sạn'}
         </button>}
 
-        {!user && <button onClick={openSignIn} className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
-          Login
+      {!user && <button onClick={openSignIn} className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
+       Đăng nhập
         </button>}
       </div>
     </nav>

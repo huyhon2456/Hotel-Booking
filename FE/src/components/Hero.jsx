@@ -33,24 +33,22 @@ const Hero = () => {
                 return updatedSearchedCities;
             });
         } catch (error) {
-            console.log("Error saving search history:", error);
-            // Không hiển thị lỗi cho người dùng vì đây không phải là lỗi quan trọng
+           
         }
     }
     return (
-        <div className='flex flex-col items-start justify-center px-6 md:px-16 lg:px-24 xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-cover bg-no-repeat bg-center h-screen'>
-            <p className='bg-[#FFD2C7]/50 px-3.5 py-1 rounded-full mt-20'>The Ultimate Travelling</p>
-            <h1 className='font-playfair text-2xl md:text-6xl md:text-[56px] md:leading-[56px]  max-w-xl mt-4 '>Start your unforgettable journey with us. </h1>
-            <p className='max-w-130 mt-2 text-sm md:text-base '>The best travel for your jouney begins now</p>
-
-            <form onSubmit={onSearch} className='bg-white text-gray-500 rounded-lg px-6 py-4 mt-8 flex flex-col md:flex-row max-md:items-start gap-4 max-md:mx-auto'>
+        <div className='flex flex-col items-start justify-center px-6 md:px-16 lg:px-24 xl:px-32 text-white bg-[url("/src/assets/hero.png")] bg-cover bg-no-repeat bg-center h-screen'>
+            <p className='bg-[var(--color-1)]/50 px-3.5 py-1 rounded-full mt-20 text-white '>Nơi thoải mái bất tận</p>
+            <h1 className='font-playfair text-2xl md:text-6xl md:text-[56px] md:leading-[56px]  max-w-xl mt-4 text-white '>Bắt đầu tìm kiếm sự thoải mái cùng chúng tôi</h1>
+           
+            <form onSubmit={onSearch} className='bg-white text-black rounded-lg px-6 py-4 mt-8 flex flex-col md:flex-row max-md:items-start gap-4 max-md:mx-auto '>
 
                 <div>
-                    <div className='flex items-center gap-2'>
-                        <img src={assets.calenderIcon} alt="" className='h-4' />
-                        <label htmlFor="destinationInput">Destination</label>
+                    <div className='flex items-center gap-2 text-black'>
+                        <img src={assets.calenderIcon} alt="" className='h-4 invert transition-all duration-500' />
+                        <label htmlFor="destinationInput">Địa điểm</label>
                     </div>
-                    <input onChange={(e) => setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
+                    <input onChange={(e) => setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className=" rounded border border-black px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
                     <datalist id='destinations'>
                         {cities.map((city, index) => (
                             <option key={index} value={city} />
@@ -60,24 +58,24 @@ const Hero = () => {
                 </div>
 
                 <div>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-2 text-black'>
                         <img src={assets.calenderIcon} alt="" className='h-4' />
-                        <label htmlFor="checkIn">Check in</label>
+                        <label htmlFor="checkIn">Ngày vào</label>
                     </div>
-                    <input id="checkIn" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
+                    <input id="checkIn" type="date" className=" rounded border border-black px-3 py-1.5 mt-1.5 text-sm outline-none" />
                 </div>
 
                 <div>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-2 text-black'>
                         <img src={assets.calenderIcon} alt="" className='h-4' />
-                        <label htmlFor="checkOut">Check out</label>
+                        <label htmlFor="checkOut">Ngày ra</label>
                     </div>
-                    <input id="checkOut" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
+                    <input id="checkOut" type="date" className=" rounded border border-black px-3 py-1.5 mt-1.5 text-sm outline-none" />
                 </div>
 
-                <div className='flex md:flex-col max-md:gap-2 max-md:items-center'>
-                    <label htmlFor="guests">Guests</label>
-                    <input min={1} max={4} id="guests" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none  max-w-16" placeholder="0" />
+                <div className='flex md:flex-col max-md:gap-2 max-md:items-center text-black'>
+                    <label htmlFor="guests">Số lượng</label>
+                    <input min={1} max={4} id="guests" type="number" className=" rounded border border-black px-3 py-1.5 mt-1.5 text-sm outline-none  max-w-16" placeholder="0" />
                 </div>
 
                 <button className='flex items-center justify-center gap-1 rounded-md bg-[var(--color-1)] py-3 px-4 text-white my-auto cursor-pointer max-md:w-full max-md:py-1' >

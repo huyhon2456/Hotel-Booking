@@ -112,7 +112,6 @@ const AllRooms = () => {
         
         // Kiểm tra xem room.hotel và room.hotel.city có tồn tại không
         if (!room.hotel || !room.hotel.city) {
-            console.log("Warning: Room missing hotel or city information:", room._id);
             return false;
         }
         

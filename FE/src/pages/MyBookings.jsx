@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
 import { useEffect } from 'react'
+import VNPayPaymentButton from '../components/VNPayPaymentButton'
+
 
 const MyBookings = () => {
 
@@ -86,9 +88,13 @@ const MyBookings = () => {
                                 </p>
                             </div>
                             {!booking.isPaid && (
-                                <button className='px-4 py-1.5 mt-4 text-xs bg-[var(--color-1)] text-white rounded-full hover:bg-[var(--color-2)]/50 transition-all hover:text-gray-700 cursor-pointer'>
-                                    Thanh toán
-                                </button>
+                                <div className="flex items-center">
+                                    <VNPayPaymentButton 
+                                        bookingId={booking._id} 
+                                        className='px-4 py-1.5 mt-4 text-xs bg-[var(--color-1)] text-white rounded-full hover:bg-[var(--color-2)]/50 transition-all hover:text-gray-700 cursor-pointer'
+                                    />
+                                    
+                                </div>
                             )}
                         </div>
                     </div>

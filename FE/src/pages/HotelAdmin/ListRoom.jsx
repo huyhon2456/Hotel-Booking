@@ -28,7 +28,7 @@ const ListRoom = () => {
     const { data } = await axios.post('/api/rooms/toggle-availability', { roomId }, { headers: { Authorization: `Bearer ${await getToken()}` } });
     if (data.success) {
       toast.success(data.message);
-      fetchRooms(); // Cập nhật lại danh sách phòng sau khi thay đổi trạng thái
+      fetchRooms();
     } else {
       toast.error(data.message);
     }
@@ -41,7 +41,7 @@ const ListRoom = () => {
   }, [user])
   return (
     <div>
-      <Title align='left' font='Roboto' title='Danh sách các phòng' subTitle='Ai cho tôi lương thiện' />
+      <Title align='left' font='Roboto' title='Danh sách các phòng' subTitle='Tất cả phòng kèm giá và các tiện ích' />
       <p className='text-gray-500 mt-8'>Tất cả phòng</p>
       <div className='w-full max-w-3xl text-left border border-gray-300 rounded max-h-80 overflow-y-scroll mt-3'>
         <table className='w-full '>

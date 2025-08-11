@@ -1,1 +1,18 @@
+# Dependencies
 node_modules
+
+# Env files
+.env
+BE/.env
+FE/.env
+
+# Builds/outputs
+dist
+build
+coverage
+
+# OS/Editor
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json

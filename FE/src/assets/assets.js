@@ -1,4 +1,4 @@
-import logo from './logo.svg'
+import logo from './logoo.png'
 import searchIcon from './searchIcon.svg'
 import userIcon from './userIcon.svg'
 import calenderIcon from './calenderIcon.svg'
@@ -37,6 +37,7 @@ import listIcon from "./listIcon.svg";
 import uploadArea from "./uploadArea.svg";
 import totalBookingIcon from "./totalBookingIcon.svg";
 import totalRevenueIcon from "./totalRevenueIcon.svg";
+import userPng from "./user.png";
 
 
 export const assets = {
@@ -72,6 +73,7 @@ export const assets = {
     uploadArea,
     totalBookingIcon,
     totalRevenueIcon,
+    userPng,
 }
 
 export const cities = [
@@ -88,33 +90,36 @@ export const cities = [
 
 // Exclusive Offers Dummy Data
 export const exclusiveOffers = [
-    { _id: 1, title: "Summer Escape Package", description: "Enjoy a complimentary night and daily breakfast", priceOff: 25, expiryDate: "Aug 31", image: exclusiveOfferCardImg1 },
-    { _id: 2, title: "Romantic Getaway", description: "Special couples package including spa treatment", priceOff: 20, expiryDate: "Sep 20", image: exclusiveOfferCardImg2 },
-    { _id: 3, title: "Luxury Retreat", description: "Book 60 days in advance and save on your stay at any of our luxury properties worldwide.", priceOff: 30, expiryDate: "Sep 25", image: exclusiveOfferCardImg3 },
+    { _id: 1, title: "Gói Nghỉ Dưỡng Mùa Hè", description: "Tặng thêm 1 đêm miễn phí và buffet sáng hàng ngày", priceOff: 25, expiryDate: "31 Thg 8", image: exclusiveOfferCardImg1 },
+    { _id: 2, title: "Gói Trăng Mật Lãng Mạn", description: "Ưu đãi đặc biệt cho các cặp đôi bao gồm dịch vụ spa", priceOff: 20, expiryDate: "20 Thg 9", image: exclusiveOfferCardImg2 },
+    { _id: 3, title: "Kỳ Nghỉ Sang Trọng", description: "Đặt trước 60 ngày và tiết kiệm chi phí lưu trú tại các khách sạn cao cấp trên toàn thế giới.", priceOff: 30, expiryDate: "25 Thg 9", image: exclusiveOfferCardImg3 },
 ]
 
 // Testimonials Dummy Data
 export const preview = [
-    { id: 1, name: "Emma Rodriguez", address: "Barcelona, Spain", image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200", rating: 5, review: "I've used many booking platforms before, but none compare to the personalized experience and attention to detail that QuickStay provides." },
-    { id: 2, name: "Liam Johnson", address: "New York, USA", image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200", rating: 4, review: "QuickStay exceeded my expectations. The booking process was seamless, and the hotels were absolutely top-notch. Highly recommended!" },
-    { id: 3, name: "Sophia Lee", address: "Seoul, South Korea", image: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=200", rating: 5, review: "Amazing service! I always find the best luxury accommodations through QuickStay. Their recommendations never disappoint!" }
+    { id: 1, name: "Nguyễn Văn Triết", address: "Hà Nội, Việt Nam", image: userPng, rating: 5, review: "Tôi đã sử dụng nhiều nền tảng đặt phòng khác nhau, nhưng không có nền tảng nào có thể so sánh với trải nghiệm cá nhân hóa và sự chú ý đến từng chi tiết mà Booking Hotel mang lại." },
+    { id: 2, name: "Trần Văn Minh", address: "Hồ Chí Minh, Việt Nam", image: userPng, rating: 4, review: "Booking Hotel đã vượt quá mong đợi của tôi. Quy trình đặt phòng rất dễ dàng và các khách sạn thực sự tuyệt vời. Rất khuyến khích!" },
+    { id: 3, name: "Lê Thị Hương", address: "Đà Nẵng, Việt Nam", image: userPng, rating: 5, review: "Dịch vụ tuyệt vời! Tôi luôn tìm được những chỗ nghỉ cao cấp tốt nhất thông qua Booking Hotel. Những gợi ý của họ không bao giờ làm tôi thất vọng!" }
 ];
 
 // Facility Icon
 export const facilityIcons = {
-    "Free WiFi": assets.freeWifiIcon,
-    "Free Breakfast": assets.freeBreakfastIcon,
-    "Room Service": assets.roomServiceIcon,
-    "Mountain View": assets.mountainIcon,
-    "Pool Access": assets.poolIcon,
+    // Wi‑Fi: support multiple label variants to avoid missing icons
+    "WiFi siêu mạnh": assets.freeWifiIcon,
+    "Wifi siêu mạnh": assets.freeWifiIcon, // alias (different casing)
+    "Free WiFi": assets.freeWifiIcon, // alias (English)
+    "Miễn phí ăn sáng": assets.freeBreakfastIcon,
+    "Dịch vụ phòng": assets.roomServiceIcon,
+    "Tầm nhìn núi": assets.mountainIcon,
+    "Truy cập hồ bơi": assets.poolIcon,
 };
 
 // For Room Details Page
 export const roomCommonData = [
-    { icon: assets.homeIcon, title: "Clean & Safe Stay", description: "A well-maintained and hygienic space just for you." },
-    { icon: assets.badgeIcon, title: "Enhanced Cleaning", description: "This host follows Staybnb's strict cleaning standards." },
-    { icon: assets.locationFilledIcon, title: "Excellent Location", description: "90% of guests rated the location 5 stars." },
-    { icon: assets.heartIcon, title: "Smooth Check-In", description: "100% of guests gave check-in a 5-star rating." },
+    { icon: assets.homeIcon, title: "Lưu trú sạch sẽ và an toàn", description: "Không gian được chăm sóc và vệ sinh kỹ lưỡng dành riêng cho bạn." },
+    { icon: assets.badgeIcon, title: "Vệ sinh tăng cường", description: "Chủ nhà tuân thủ các tiêu chuẩn vệ sinh nghiêm ngặt của Staybnb." },
+    { icon: assets.locationFilledIcon, title: "Vị trí tuyệt vời", description: "90% khách đánh giá vị trí 5 sao." },
+    { icon: assets.heartIcon, title: "Nhận phòng nhanh chóng", description: "100% khách đánh giá quy trình nhận phòng 5 sao." },
 ];
 
 // User Dummy Data

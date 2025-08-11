@@ -9,6 +9,7 @@ import hotelRouter from './routes/hotelRoutes.js';
 import connectCloudinary from './configs/cloudinary.js';
 import roomRouter from './routes/roomRoutes.js';
 import bookingRouter from './routes/bookingRoutes.js';
+import contactRouter from './routes/contactRoutes.js';
 
 
 connectDB()
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter)
 app.use('/api/hotel', hotelRouter)
 app.use('/api/rooms', roomRouter)
 app.use('/api/bookings', bookingRouter)
+app.use('/api/contact', contactRouter)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

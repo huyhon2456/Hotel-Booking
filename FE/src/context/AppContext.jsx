@@ -20,9 +20,9 @@ export const AppProvider = ({ children }) => {
     const formatPrice = (price) => {
         // Chuyển đổi thành số nếu cần
         const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-        
         // Định dạng số với dấu phân cách hàng nghìn và 0 chữ số thập phân
-        return numPrice.toLocaleString('vi-VN') + ' ' + currency;    };
+        return numPrice.toLocaleString('vi-VN') + ' ' + currency;
+    };
 
     const [isOwner, setIsOwner] = useState(false);
     const [showHotelReg, setShowHotelReg] = useState(false);
@@ -34,8 +34,7 @@ export const AppProvider = ({ children }) => {
             const { data } = await axios.get('/api/rooms')
             if (data.success) {
                 if (data.rooms && data.rooms.length > 0) {
-                    // Kiểm tra xem dữ liệu có chứa thông tin đầy đủ về khách sạn không
-                   
+                    // Lưu trữ danh sách phòng vào state
                     setRooms(data.rooms);
                 } else {
                     console.log("No rooms found in response");
@@ -48,7 +47,7 @@ export const AppProvider = ({ children }) => {
             toast.error(error.message || 'An error occurred while fetching rooms');
         }
     }
-    
+
     const fetchUser = async () => {
         try {
             const { data } = await axios.get('/api/user', { headers: { Authorization: `Bearer ${await getToken()}` } })

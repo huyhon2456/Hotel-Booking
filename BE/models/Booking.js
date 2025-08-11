@@ -21,6 +21,18 @@ const bookingSchema = new mongoose.Schema({
     isPaid: {
         type: Boolean,
         default: false,
+    },
+    paymentDetails: {
+        orderId: String, // Mã đơn hàng VNPay
+        amount: Number, // Số tiền thanh toán
+        status: {
+            type: String,
+            enum: ['pending', 'completed', 'failed', 'cancelled'],
+            default: 'pending'
+        },
+        transactionId: String, // Mã giao dịch từ VNPay
+        transactionDate: Date, // Ngày thanh toán
+        message: String // Thông báo lỗi nếu có
     }
 
 }, { timestamps: true });

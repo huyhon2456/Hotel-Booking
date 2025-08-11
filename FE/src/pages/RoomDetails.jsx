@@ -16,7 +16,7 @@ const RoomDetails = () => {
     const [guest, setGuest] = useState(1)
 
     const [isAvailable, setIsAvailable] = useState(false)
-    const [isChecked, setIsChecked] = useState(false) // Để theo dõi đã kiểm tra hay chưa
+    const [isChecked, setIsChecked] = useState(false) 
     const [isCheckingAvailability, setIsCheckingAvailability] = useState(false)
 
     // Kiểm tra tính khả dụng của phòng
@@ -120,14 +120,12 @@ const RoomDetails = () => {
         const room = rooms.find(room => room._id === id);
         room && setRoom(room);
         room && setMainImage(room.images[0]);
-    }, [rooms]);    // Tự động reset trạng thái khi thay đổi ngày
+    }, [rooms]);
     useEffect(() => {
         if (checkInDate && checkOutDate) {
-            // Reset trạng thái kiểm tra khi thay đổi ngày
             setIsChecked(false);
             setIsAvailable(false);
         } else {
-            // Reset availability if dates are not selected
             setIsAvailable(false);
             setIsChecked(false);
         }

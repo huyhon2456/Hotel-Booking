@@ -6,6 +6,10 @@ import Footer from './components/Footer';
 import AllRooms from './pages/AllRooms';
 import RoomDetails from './pages/RoomDetails';
 import MyBookings from './pages/MyBookings';
+import PaymentResult from './pages/PaymentResult';
+import VNPaySimulator from './pages/VNPaySimulator';
+import Blog from './pages/Blog';
+import Contact from './pages/Contact';
 import HotelRegister from './components/HotelRegister';
 import Layout from './pages/HotelAdmin/Layout';
 import Dashboard from './pages/HotelAdmin/Dashboard';
@@ -27,7 +31,11 @@ const App = () => {
         <Route path='/' element={<Home/>} />
         <Route path='/rooms' element={<AllRooms/>} />
         <Route path='/rooms/:id' element={<RoomDetails/>} />
+  <Route path='/blog' element={<Blog/>} />
+  <Route path='/contact' element={<Contact/>} />
         <Route path='/my-bookings' element={<MyBookings/>} />
+        <Route path='/payment-result' element={<PaymentResult/>} />
+        <Route path='/vnpay-simulator' element={<VNPaySimulator/>} />
         <Route path='/owner' element={<Layout/>} >
           <Route index element={<Dashboard/>}/>
           <Route path='add-room' element={<AddRoom/>}/>

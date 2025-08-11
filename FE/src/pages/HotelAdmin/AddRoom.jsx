@@ -20,11 +20,11 @@ const AddRoom = () => {
     roomType: '',
     pricePerNight: 0,
     amenities: {
-      "Free WiFi": false,
-      "Free Breakfast": false,
-      "Room Service": false,
-      "Mountain View": false,
-      "Pool Access": false
+  "WiFi siêu mạnh": false,
+      "Miễn phí ăn sáng": false,
+      "Dịch vụ phòng": false,
+      "Tầm nhìn núi": false,
+      "Truy cập hồ bơi": false
     }
   })
 
@@ -59,11 +59,11 @@ const AddRoom = () => {
           roomType: '',
           pricePerNight: 0,
           amenities: {
-            "Free WiFi": false,
-            "Free Breakfast": false,
-            "Room Service": false,
-            "Mountain View": false,
-            "Pool Access": false
+            "WiFi siêu mạnh": false,
+            "Miễn phí ăn sáng": false,
+            "Dịch vụ phòng": false,
+            "Tầm nhìn núi": false,
+            "Truy cập hồ bơi": false
           }
         })
         setImages({
@@ -84,13 +84,13 @@ const AddRoom = () => {
   }
   return (
     <form onSubmit={onSubmitHandler}>
-      <Title title='Thêm phòng' align='left' font='Roboto' subTitle='thêm các phòng giúp .....' />
+      <Title title='Thêm phòng' align='left' font='Roboto' subTitle='Cho khách hàng có nhiều lựa chọn hơn' />
       {/*thêm ảnh */}
       <p className='text-gray-800 mt-10'>Ảnh</p>
       <div className='grid grid-cols-2 sm:flex gap-4 my-2 flex-wrap'>
         {Object.keys(images).map((key) => (
           <label htmlFor={`roomImage${key}`} key={key}>
-            <img className={`max-h-13 cursor-pointer opacity-80 ${!images[key] ? 'invert' : ''}`} src={images[key] ? URL.createObjectURL(images[key]) : assets.uploadArea} alt="" />
+            <img className={`max-h-20 cursor-pointer opacity-80 invert `} src={images[key] ? URL.createObjectURL(images[key]) : assets.uploadArea} alt="" />
             <input type="file" accept="image/*" id={`roomImage${key}`} hidden onChange={e => setImages({ ...images, [key]: e.target.files[0] })} />
           </label>
         ))}

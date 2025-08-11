@@ -14,25 +14,18 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      console.log('Fetching dashboard data...');
       const token = await getToken();
-      console.log('Got token:', token ? 'Token received' : 'No token');
       
       const { data } = await axios.get('/api/bookings/hotel', { 
         headers: { Authorization: `Bearer ${token}` } 
       });
       
-      console.log('Dashboard API response:', data);
-      
       if (data.success) {
         setDashboardData(data.dashboardData);
-        console.log('Dashboard data set:', data.dashboardData);
       } else {
-        console.error('API error:', data.message);
         toast.error(data.message || "Không thể lấy dữ liệu dashboard");
       }
     } catch (error) {
-      console.error('Fetch error:', error);
       toast.error(error.message || "Đã xảy ra lỗi khi lấy dữ liệu dashboard");
     }
   }
@@ -50,7 +43,7 @@ const Dashboard = () => {
         <div className='bg-[var(--color-2)]/50 border border-[var(--color-1)]/40 rounded-3xl flex p-4 pr-8'>
           <img src={assets.totalBookingIcon} alt="" className='max-sm:hidden h-10 invert' />
           <div className='flex flex-col sm:ml-4 font-medium'>
-            <p className='text-[var(--color-4)] text-lg'>Tổng lượt book</p>
+            <p className='text-[var(--color-4)] text-lg'>Tổng lượt đặt</p>
             <p className='text-[var(--color-3)] text-base'>{dashboardData.totalBookings} LƯỢT</p>
           </div>
         </div>
@@ -71,7 +64,7 @@ const Dashboard = () => {
           <thead className='bg-gray-50'>
             <tr>
               <th className='py-3 px-4 text-gray-800 font-medium'>Tên khách</th>
-              <th className='py-3 px-4 text-gray-800 font-medium max-sm:hidden'>Tên phòng</th>
+              <th className='py-3 px-4 text-gray-800 font-medium max-sm:hidden'>Loại phòng</th>
               <th className='py-3 px-4 text-gray-800 font-medium text-center'>Tổng tiền</th>
               <th className='py-3 px-4 text-gray-800 font-medium text-center'>Trạng thái</th>
             </tr>

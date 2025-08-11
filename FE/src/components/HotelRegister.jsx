@@ -48,40 +48,40 @@ const HotelRegister = () => {
 
                 <div className='relative flex flex-col items-center md:w-1/2 p-8 md:p-10'>
                     <img src={assets.closeIcon} alt="close-icon" className='absolute top-4 right-4 h-4 w-4 cursor-pointer' onClick={() => setShowHotelReg(false)} />
-                    <p className='text-2xl font-semibold mt-6 text-[var(--color-3)]'>Register Your Hotel</p>
+                    <p className='text-2xl font-semibold mt-6 text-[var(--color-3)]'>Bạn là chủ khách sạn? Hãy đăng kí ngay.</p>
 
                     {/*tên khách sạn */}
                     <div className='w-full mt-4'>
                         <label htmlFor="name" className='font-medium text-[var(--color-3)]'>
-                            Hotel Name
+                            Tên khách sạn
                         </label>
                         <input id='name' onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder='VD: Luxury Hotel' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-[var(--color-1)] font-light required' />
                     </div>
                     {/*Liên hệ */}
                     <div className='w-full mt-4'>
                         <label htmlFor="contact" className='font-medium text-[var(--color-3)]'>
-                            Phone
+                            Số điện thoại
                         </label>
                         <input onChange={(e) => setContact(e.target.value)} value={contact} id='contact' type="text" placeholder='...' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-[var(--color-1)] font-light required' />
                     </div>
                     {/*Địa chỉ */}
                     <div className='w-full mt-4'>
                         <label htmlFor="address" className='font-medium text-[var(--color-3)]'>
-                            Address
+                            Địa chỉ
                         </label>
                         <input onChange={(e) => setAddress(e.target.value)} value={address} id='address' type="text" placeholder='...' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-[var(--color-1)] font-light required' />
                     </div>
                     {/*Thành phố */}
                     <div className='w-full mt-4 max-w-60 mr-auto'>
-                        <label htmlFor="city" className='font-medium text-[var(--color-3)]'>City</label>
+                        <label htmlFor="city" className='font-medium text-[var(--color-3)]'>Thành phố</label>
                         <select onChange={(e) => setCity(e.target.value)} value={city} id="city" className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-[var(--color-1)]font-light required'>
-                            <option value="">Select City</option>
+                            <option value="">Chọn thành phố</option>
                             {cities.map((city) => (
                                 <option value={city} key={city}>{city}</option>
                             ))}
                         </select>
                     </div>
-                    <button className='bg-[var(--color-1)] hover:bg-[var(--color-2)] trasition-all text-white mr-auto px-6 py-2 rounded cursor-pointer mt-6 hover:text-[var(--color-4)]'>Register</button>
+                    <button className='bg-[var(--color-1)] hover:bg-[var(--color-2)] trasition-all text-white mr-auto px-6 py-2 rounded cursor-pointer mt-6 hover:text-[var(--color-4)]'>Đăng ký</button>
                 </div>
 
             </form>
