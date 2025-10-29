@@ -1,13 +1,10 @@
-# 🏨 Hotel Booking (React + Node)
-
-MVP đặt phòng khách sạn: tìm kiếm, xem chi tiết, đặt phòng, thanh toán VNPay, dashboard chủ khách sạn. Giao diện hiện đại, code rõ ràng, dễ demo.
 
 ## ✨ Highlights
 - Tìm kiếm theo điểm đến, ngày, số khách; xem chi tiết phòng (ảnh, tiện ích, giá)
-- Đặt phòng và quản lý đơn cá nhân; thanh toán VNPay (sandbox flow đầy đủ)
+- Đặt phòng và quản lý đơn cá nhân; thanh toán VNPay 
 - Dashboard chủ khách sạn: thêm phòng (upload Cloudinary), quản lý phòng/đơn
 - Đăng nhập qua Clerk; kiến trúc FE/BE rõ ràng; UI Tailwind
-- Codebase sẵn demo, dễ triển khai local hoặc Vercel
+- Triển khai local hoặc Vercel
 
 ## 🧱 Tech Stack
 
@@ -27,9 +24,6 @@ MVP đặt phòng khách sạn: tìm kiếm, xem chi tiết, đặt phòng, than
 
 ### DevOps & Deployment
 - Vercel (FE/BE), MongoDB Atlas
-- Environment variables per environment
-
-
 
 ## 🚀 Quick Start
 
@@ -97,26 +91,7 @@ npm run dev
 ### 4) Mở ứng dụng
 - FE: http://localhost:5173
 
-
-
-## � Endpoints (tóm tắt)
-- Clerk auth (SaaS) – không có endpoint custom
-- User: GET /api/user; POST /api/user/recent-search-cities
-- Hotel: POST /api/hotel
-- Rooms: GET /api/rooms; POST /api/rooms (multipart, protect); GET /api/rooms/owner; POST /api/rooms/toggle-availability
-- Bookings: POST /api/bookings/check-availability; POST /api/bookings/book (protect); GET /api/bookings/user; GET /api/bookings/hotel
-- VNPay: POST /api/bookings/vnpay-payment (protect); GET /api/bookings/vnpay-return; GET /api/bookings/vnpay-ipn
-- Contact: POST /api/contact
-
-
 ## 👨‍💻 Author
 
 - **Huy Hon** - *Full Stack Developer* - [huyhon2456](https://github.com/huyhon2456)
-
-## 📞 Contact
-
-- Email: huyhon2456@gmail.com
-- GitHub: [huyhon2456](https://github.com/huyhon2456)
-- Project Link: [https://github.com/huyhon2456/hotel-boking](https://github.com/huyhon2456/hotel-boking)
-
 
